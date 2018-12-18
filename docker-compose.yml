@@ -1,0 +1,22 @@
+version: '3'
+services:
+    db:
+        image: postgres
+        restart: always
+        environment:
+            - POSTGRES_PASSWORD=password
+
+    adminer:
+        image: adminer
+        restart: always
+        ports:
+        - 8080:8080
+
+    app:
+        restart: always
+        build: .
+        ports:
+            - 8081:8081
+            - 9229:9229
+        depends_on:
+            - db
