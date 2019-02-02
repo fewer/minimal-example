@@ -3,6 +3,9 @@ import { Adapter } from '@fewer/adapter-postgres';
 
 export default createDatabase({
   adapter: new Adapter({
-    // TODO: Put your database connection here!
+    user: 'postgres',
+    host: 'db',
+    database: 'postgres',
+    password: 'password',
   }),
 });

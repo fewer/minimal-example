@@ -1,25 +1,28 @@
+import path from 'path';
 import express from 'express';
-import db from './db';
-import posts from './repositories/posts';
+import database from './database';
+import Posts from './repositories/Posts';
 
 const app = express();
 
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
 app.get('/', (req, res) => {
-  res.send('ok');
+  res.render('/posts');
 });
 
-app.get('/posts/create', async (req, res) => {
-    const post = await posts.create({ title: req.query.title || 'Hello World' });
-    res.send('OK');
-});
+// app.get('/posts/create', async (req, res) => {
+//     const post = await posts.create({ title: req.query.title || 'Hello World' });
+//     res.send('OK');
+// });
 
 app.get('/posts', async (req, res) => {
-  const allPosts = await posts.where({});
-  const data = (allPosts as any).rows;
-  res.json(data);
+  const posts = await Posts;
+  res.render('posts', { posts });
 });
 
-app.listen(8081, () => {
-  db.connect();
+app.listen(8081, async () => {
+  await database.connect();
   console.log('App started.');
 });
