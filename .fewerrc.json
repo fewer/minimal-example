@@ -1,0 +1,9 @@
+{
+  "src": "src",
+  "migrations": "src/migrations/",
+  "repositories": "src/repositories/",
+  "schema": "src/schema.ts",
+  "databases": [
+    "src/database.ts"
+  ]
+}
