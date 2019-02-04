@@ -13,11 +13,9 @@
     "@fewer/adapter-postgres": "0.1.0",
     "@fewer/validations": "^0.1.0",
     "body-parser": "^1.18.3",
-    "ejs": "^2.6.1",
     "express": "^4.16.4",
     "express-handlebars": "^3.0.0",
     "fewer": "^0.1.0",
-    "handlebars": "^4.0.12",
     "ts-node-dev": "^1.0.0-pre.32"
   },
   "devDependencies": {
