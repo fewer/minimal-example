@@ -1,0 +1,15 @@
+<div>
+    <form method="POST" action="/posts">
+        <label>
+            Title:
+            <input name="title">
+        </label>
+        <input type="submit" value="Create Post">
+    </form>
+
+    <ul>
+        {{#each posts }}
+        <li><a href="/posts/{{id}}">{{title}}</a></li>
+        {{/each}}
+    </ul>
+</div>
