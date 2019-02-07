@@ -9,7 +9,16 @@
 import { createSchema } from 'fewer';
 import database from './database';
 
-export default createSchema().table(database, 'posts', t => ({
-  id: t.bigserial(),
-  title: t.text(),
-}));
+export default createSchema()
+  .table(database, 'posts', t => ({
+    id: t.bigserial(),
+    title: t.varchar(),
+    subtitle: t.varchar(),
+    content: t.text(),
+    comments_enabled: t.boolean(),
+  }))
+  .table(database, 'users', t => ({
+    id: t.bigserial(),
+    name: t.varchar(),
+    password_hash: t.varchar(),
+  }));

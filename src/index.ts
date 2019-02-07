@@ -1,40 +1,24 @@
-import path from 'path';
-import express from 'express';
-import bodyParser from 'body-parser';
-import expressHandlebars from 'express-handlebars';
+// Import the fewer database:
 import database from './database';
-import Posts from './repositories/Posts';
-
-const app = express();
-
-app.use(bodyParser.urlencoded());
-app.use(bodyParser.json());
-
-app.engine('hbs', expressHandlebars({ extname: '.hbs' }));
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+// Import the express application:
+import app from './app';
+// Import our controllers:
+import { router as posts } from './controllers/posts';
+import { router as users } from './controllers/users';
 
 app.get('/', (req, res) => {
-  res.redirect('/posts');
+  res.render('index');
 });
 
-app.get('/posts', async (req, res) => {
-  const posts = await Posts;
-  res.render('posts', { posts });
-});
+app.use('/posts', posts);
+app.use('/users', users);
 
-app.post('/posts', async (req, res) => {
-  await Posts.create({ title: req.body.title });
-  res.redirect('/posts');
-});
+// Set up top-level app routes:
+app.get('/login', (req, res) => res.redirect('/users/login'));
+app.get('/signup', (req, res) => res.redirect('/users/signup'));
 
-app.get('/posts/:id', async (req, res) => {
-  const post = await Posts.find(req.params.id);
-  // @ts-ignore Bug in fewer:
-  res.render('post', { post: post[0] });
-});
-
-app.listen(8081, async () => {
+const port = process.env.PORT || 8081;
+app.listen(port, async () => {
   await database.connect();
-  console.log('App started.');
+  console.log(`App started on port ${port}.`);
 });

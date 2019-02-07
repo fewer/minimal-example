@@ -10,16 +10,19 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@fewer/adapter-postgres": "0.1.0",
-    "@fewer/validations": "^0.1.0",
+    "@fewer/adapter-postgres": "0.1.2",
+    "@fewer/validations": "^0.1.2",
+    "bcrypt": "^3.0.4",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "express-handlebars": "^3.0.0",
-    "fewer": "^0.1.0",
+    "fewer": "^0.1.2",
+    "hbs": "^4.0.1",
     "ts-node-dev": "^1.0.0-pre.32"
   },
   "devDependencies": {
-    "@fewer/cli": "^0.1.4",
+    "@fewer/cli": "^0.1.6",
+    "@types/bcrypt": "^3.0.0",
     "@types/express": "^4.16.0",
     "@types/express-handlebars": "^0.0.30",
     "typescript": "^3.2.2"
